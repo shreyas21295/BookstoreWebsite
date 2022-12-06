@@ -33,5 +33,4 @@ export const useOrderDetailsStore = defineStore("OrderDetailsStore", {
       return sessionStorage.getItem(ORDER_DETAIL_STORAGE_KEY) != null;
     },
   },
-  // getters
 });

@@ -19,7 +19,6 @@ h1 {
   text-align: center;
   padding: 1em 2em;
   color: var(--primary-color-dark);
-  /*border-bottom: 1px solid black;*/
   background-color: var(--card-background-color);
 }
 
@@ -42,15 +41,12 @@ h1 {
   width: 100%;
   height: auto;
   flex-wrap: wrap;
-  /*overflow-y: auto;*/
-  /*margin: auto 0.5em auto 0.5em;*/
   border-bottom: 1px solid black;
 }
 .cart-header {
   font-weight: bold;
   flex-wrap: wrap;
   padding: 1em;
-  /*color: var(--primary-color-dark);*/
 }
 </style>
 

@@ -8,7 +8,6 @@ footer {
   padding-top: 0.5em;
   padding-bottom: 1em;
   gap: 1em;
-  /*font-size: 1.25rem;*/
 }
 
 .copyright {

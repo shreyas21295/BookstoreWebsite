@@ -3,8 +3,6 @@ import { useRoute } from "vue-router";
 import { useCategoryStore } from "@/stores/CategoryStore";
 const route = useRoute();
 const categoryStore = useCategoryStore();
-console.log("fetch categories " + categoryStore.selectedCategoryName);
-//const categoryList = inject("categoryList");
 </script>
 
 <style scoped>
@@ -44,7 +42,6 @@ console.log("fetch categories " + categoryStore.selectedCategoryName);
 
 .button.unselected-category-button,
 .button.unselected-category-button:visited {
-  /*background-color: var(--neutral-color);*/
   background-color: var(--nav-color);
   color: var(--primary-color-dark);
   border: 1px solid var(--primary-color-dark);

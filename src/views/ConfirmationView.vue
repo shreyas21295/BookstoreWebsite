@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import ConfirmationTable from "@/components/ConfirmationTable.vue";
 import { useOrderDetailsStore } from "@/stores/OrderDetailsStore";
 import { useCategoryStore } from "@/stores/CategoryStore";
 const orderDetailsStore = useOrderDetailsStore();
 const categoryStore = useCategoryStore();
-const orderDetails = computed(() => {
-  if (orderDetailsStore.hasOrderDetails()) {
-    return orderDetailsStore.orderDetails;
-  }
-  return null;
-});
+const orderDetails = orderDetailsStore.orderDetails;
+
 const months: string[] = [
   "JAN",
   "FEB",
@@ -28,7 +23,6 @@ const months: string[] = [
 </script>
 <style scoped>
 #confirmation {
-  /*background-color: var(--card-background-color);*/
   color: var(--primary-color-dark);
   border-bottom: 1px solid black;
 }
@@ -64,9 +58,8 @@ ul > li {
 
 .checkout-empty-content {
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
-  gap: 0.5em;
+  align-items: center;
 }
 
 #confirmation-summary {
@@ -81,7 +74,6 @@ ul > li {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /*justify-content: flex-end;*/
   justify-content: space-evenly;
 }
 
@@ -105,22 +97,12 @@ ul > li {
   padding: 0.25em;
 }
 
-/*#confirmation-summary > h3 {*/
-/*  text-align: center;*/
-/*  background-color: var(--primary-color-dark);*/
-/*  color: var(--primary-color);*/
-/*}*/
-
 #customer-details {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   padding: 0.25em;
 }
-
-/*#customer-details > h3 {*/
-/*  text-align: center;*/
-/*}*/
 
 .order-confirmation-details {
   display: flex;
@@ -146,12 +128,6 @@ ul > li {
   justify-content: space-around;
   flex-wrap: wrap;
 }
-.order-date {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 1em;
-}
 
 #confirmation-continue {
   display: flex;
@@ -164,7 +140,6 @@ ul > li {
   padding: 0.25em;
   margin: 0.25em;
   color: var(--primary-color-dark);
-  /*background-color: var(--card-background-color);*/
 }
 
 .confirmation-table-div {
@@ -174,27 +149,28 @@ ul > li {
 </style>
 <template>
   <div id="confirmation">
-    <section v-if="!orderDetails" id="confirmation-invalid">
+    <section
+      v-if="!orderDetailsStore.hasOrderDetails()"
+      id="confirmation-invalid"
+    >
       <div class="checkout-empty-content">
-        <h2>Cart is empty</h2>
-        <span>Please add books to your cart to checkout.</span>
+        <span>We are sorry, the order you requested could not be found.</span>
       </div>
       <div>
         <router-link
           :to="{
-            name: 'category-view',
-            params: { name: categoryStore.selectedCategoryName },
+            name: 'home-view',
           }"
           class="button continue"
-          >Continue Shopping</router-link
+          >Home Page</router-link
         >
       </div>
     </section>
     <template v-else>
       <section id="confirmation-summary">
-        <span class="confirmation-summary-header">
+        <div class="confirmation-summary-header">
           <h3>Order Confirmation</h3>
-        </span>
+        </div>
         <span class="confirmation-row"
           ><span class="confirmation-row-start" style="flex-grow: 2">
             Your order is successfully placed!</span
@@ -224,11 +200,11 @@ ul > li {
         </span>
       </section>
       <section id="customer-details">
-        <span class="confirmation-summary-header">
+        <div class="confirmation-summary-header">
           <h3>Customer Information</h3>
-        </span>
+        </div>
 
-        <span class="customer-details-info">
+        <div class="customer-details-info">
           <div class="customer-details-row-one">
             <p>
               Name (Email):
@@ -272,7 +248,7 @@ ul > li {
               </span>
             </p>
           </div>
-        </span>
+        </div>
       </section>
 
       <section id="confirmation-continue">

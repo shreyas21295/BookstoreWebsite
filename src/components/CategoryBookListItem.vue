@@ -20,7 +20,6 @@ const bookImageFileName = function (book: BookItem): string {
   flex-direction: column;
   border: 0.1rem solid var(--nav-color);
   width: 16rem;
-  /*max-width: 17rem;*/
   padding: 1em;
   gap: 0.25em;
 }
@@ -32,7 +31,6 @@ const bookImageFileName = function (book: BookItem): string {
 
 .book-image {
   display: flex;
-  /*justify-content: center;*/
   width: fit-content;
   height: fit-content;
   position: relative;
@@ -84,10 +82,6 @@ const bookImageFileName = function (book: BookItem): string {
 }
 
 .read-now:hover {
-  /*position: absolute;*/
-  /*top: 50%;*/
-  /*left: 50%;*/
-  /*transform: translate(-50%, -50%);*/
   background-color: var(--primary-color-dark);
   display: flex;
   font-size: 1.1rem;
@@ -109,7 +103,6 @@ const bookImageFileName = function (book: BookItem): string {
   padding: 0.3em;
   color: var(--primary-color);
   border-radius: 10px;
-  /*border-style: solid;*/
   border: 2px solid var(--primary-color-dark);
   cursor: pointer;
   width: max-content;

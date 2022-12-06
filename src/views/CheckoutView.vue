@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { useCategoryStore } from "@/stores/CategoryStore";
-import { reactive, Ref } from "vue";
+import { reactive } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { asDollarsAndCents } from "@/utils";
 import { email, helpers, required } from "@vuelidate/validators";
 import { useCartStore } from "@/stores/CartStore";
-const categoryStore = useCategoryStore();
-const cartStore = useCartStore();
-const cart = cartStore.cart;
 import { isCreditCard, isMobilePhone } from "@/utils";
 import CheckoutFieldError from "@/components/CheckoutFieldError.vue";
 import router from "@/router";
+
+const categoryStore = useCategoryStore();
+const cartStore = useCartStore();
+const cart = cartStore.cart;
 
 const months: string[] = [
   "January",
@@ -27,15 +28,13 @@ const months: string[] = [
   "December",
 ];
 
-//console.log("This is date", new Date().getMonth());
-
 const form = reactive({
   name: "",
   address: "",
   phone: "",
   email: "",
   ccNumber: "",
-  ccExpiryMonth: 1, //new Date().getMonth() + 1,
+  ccExpiryMonth: 1,
   ccExpiryYear: new Date().getFullYear(),
   checkoutStatus: "",
 });
@@ -88,7 +87,6 @@ const rules = {
 const $v = useVuelidate(rules, form);
 
 async function submitOrder() {
-  console.log("Submit order");
   const isFormCorrect = await $v.value.$validate();
   if (!isFormCorrect) {
     form.checkoutStatus = "ERROR";
@@ -106,7 +104,6 @@ async function submitOrder() {
       })
       .then(() => {
         form.checkoutStatus = "OK";
-        cartStore.clearCart();
         router.push({ name: "confirmation-view" });
       })
       .catch((reason) => {
@@ -116,14 +113,12 @@ async function submitOrder() {
   }
 }
 
-/* NOTE: For example yearFrom(0) == <current_year> */
 function yearFrom(index: number) {
   return new Date().getFullYear() + index;
 }
 </script>
 
 <style scoped>
-/* TODO: Adapt these styles to your page */
 .checkout-page {
   color: var(--primary-color-dark);
 }
@@ -172,7 +167,6 @@ function yearFrom(index: number) {
   padding-top: 1em;
   padding-bottom: 1em;
   align-items: center;
-  /*border: solid gray;*/
 }
 
 .form-details {
@@ -189,9 +183,6 @@ function yearFrom(index: number) {
 .form-element {
   display: flex;
   flex-direction: column;
-  /*align-items: baseline;*/
-  /*justify-content: space-between;*/
-  /*height: fit-content;*/
   margin-left: 0.5em;
   margin-bottom: 1em;
   margin-right: 0.5em;
@@ -224,7 +215,6 @@ function yearFrom(index: number) {
 }
 
 .selector-dropdown {
-  /*appearance: none;*/
   height: 2.625rem;
   padding: 0 0.7em 0 0;
   border: solid var(--primary-color-dark) 1px;
@@ -302,12 +292,19 @@ function yearFrom(index: number) {
 }
 
 .complete-purchase {
-  /*font-family: var(--title-font-family);*/
   font-weight: bold;
-  /*font-size: 1.25em;*/
   padding: 0.5em;
   border-radius: 10px;
   box-shadow: 2px 2px 2px;
+}
+
+.complete-purchase:disabled {
+  cursor: none;
+  padding: 0.5em;
+  font-weight: bold;
+  color: var(--primary-color);
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
 }
 </style>
 

@@ -3,7 +3,6 @@ import { CategoryItem } from "@/types";
 import { apiUrl } from "@/services/ApiService";
 
 export const useCategoryStore = defineStore("CategoryStore", {
-  //state, actions, getters
   state: () => ({
     categoryList: [] as CategoryItem[],
     selectedCategoryName: "Classics" as string,
@@ -14,13 +13,8 @@ export const useCategoryStore = defineStore("CategoryStore", {
       this.categoryList = await fetch(url).then((response) => response.json());
     },
     async fetchSelectedCategory(newName: string) {
-      //console.log("route" + newName);
-      try {
-        if (newName.includes("category")) {
-          this.selectedCategoryName = newName.split("/")[2];
-        }
-      } catch (e) {
-        console.log("");
+      if (newName.includes("category")) {
+        this.selectedCategoryName = newName.split("/")[2];
       }
     },
   },

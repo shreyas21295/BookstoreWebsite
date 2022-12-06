@@ -9,10 +9,6 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-/*form > .error {*/
-/*  color: red;*/
-/*  text-align: right;*/
-/*}*/
 .error {
   display: flex;
   flex-direction: column;
@@ -21,7 +17,6 @@ const props = defineProps<{
   font-size: 0.8em;
   color: red;
   margin-top: 0.3em;
-  /*margin-bottom: 0.3em;*/
 }
 </style>
 

@@ -12,7 +12,6 @@ export const useCartStore = defineStore("CartStore", {
     const initCart = new ShoppingCart();
     const cartString = localStorage.getItem(CART_STORAGE_KEY);
     if (cartString !== null) {
-      // cartString is a string
       const cartFromStorage = JSON.parse(cartString) as ShoppingCart;
       Object.assign(initCart, cartFromStorage);
     }
@@ -44,8 +43,8 @@ export const useCartStore = defineStore("CartStore", {
     async placeOrder(customerForm: CustomerForm) {
       const orderDetailsStore = useOrderDetailsStore();
       orderDetailsStore.clearOrderDetails();
+
       const order = { cart: this.cart, customerForm: customerForm };
-      console.log(JSON.stringify(order));
       const url = apiUrl + "orders";
 
       const orderDetails: OrderDetails = await fetch(url, {
@@ -59,9 +58,13 @@ export const useCartStore = defineStore("CartStore", {
         referrer: "client",
         method: "POST", // or 'PUT'
         body: JSON.stringify(order),
-      }).then((response) => response.json());
+      }).then((response) => {
+        if (response.ok) {
+          this.clearCart();
+        }
+        return response.json();
+      });
       orderDetailsStore.setOrderDetails(orderDetails);
-      // this.clearCart();
     },
   },
 });

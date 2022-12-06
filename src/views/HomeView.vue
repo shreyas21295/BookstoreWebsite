@@ -1,16 +1,6 @@
 <script setup lang="ts"></script>
 
 <style scoped>
-/*.home-page {*/
-/*  display: flex;*/
-/*  justify-content: space-around;*/
-/*  flex-direction: row;*/
-/*  !*margin: auto 10px auto 10px;*!*/
-/*  border-bottom: 1px solid black;*/
-/*  !*font-size: 1.25rem;*!*/
-/*  width: 100%;*/
-/*}*/
-
 .home-page {
   display: flex;
   justify-content: space-around;
@@ -46,7 +36,6 @@
 </style>
 <template>
   <section class="home-page">
-    <!--    <section class="home-content">-->
     <section class="welcome-text flow-content container">
       <h1 class="tag-line">EXPLORE FOR AMAZING OFFERS</h1>
       <p style="font-weight: bold">
@@ -71,6 +60,5 @@
         />
       </div>
     </section>
-    <!--    </section>-->
   </section>
 </template>

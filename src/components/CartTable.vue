@@ -1,46 +1,30 @@
 <script setup lang="ts">
 import { useCartStore } from "@/stores/CartStore";
 import { useCategoryStore } from "@/stores/CategoryStore";
+import { BookItem } from "@/types";
+import { asDollarsAndCents } from "@/utils";
 const categoryStore = useCategoryStore();
 const cartStore = useCartStore();
-import { BookItem } from "@/types";
-// import { asDollarsAndCents } from "@/main";
-import { asDollarsAndCents } from "@/utils";
 const bookImageFileName = function (book: BookItem): string {
   let name = book.title.toLowerCase();
   name = name.replace(/ /g, "-");
   name = name.replace(/'/g, "");
   return `${name}.gif`;
 };
-// TODO If necessary, replace the above function with the "bookImageFileName" function
-//  TODO from your CategoryBookListItem component.
-
-// const updateCart = function (book: BookItem, quantity: number) {
-//   cartStore.cart.update(book, quantity);
-// };
-// TODO The above function calls through directly to the shopping cart, which means it does not update local storage.
-// TODO Change the implementation so that it uses the appropriate action from the cart storage.
 </script>
 
 <style scoped>
 .cart-table {
   display: grid;
-  /*grid-template-columns:*/
-  /*  max-content minmax(20em, 30em) minmax(20em, 30em) minmax(10em, 20em)*/
-  /*  minmax(5em, 10em);*/
   grid-template-columns:
     max-content minmax(min-content, auto) min-content
     minmax(10em, auto) minmax(5em, max-content);
-
-  /*grid-template-columns: repeat(5, minmax(max-content, 100%));*/
   row-gap: 1em;
-  /*width: fit-content;*/
   margin: 0 auto;
   background-color: var(--nav-color);
   border-top: solid gray;
   border-left: solid gray;
   border-right: solid gray;
-  /*border-bottom: 1px solid black;*/
 }
 
 ul {
@@ -66,7 +50,6 @@ ul > li {
 
 .heading-book {
   grid-column: 1 / 3;
-  /*text-align: center;*/
   padding-left: 1.5em;
 }
 
@@ -100,13 +83,9 @@ ul > li {
 
 img {
   display: block;
-  /*width: 3.5em;*/
   width: 70px;
   height: auto;
 }
-/* TODO The width above is for book images that are normally 200px wide. Change this (if necessary) */
-/* TODO to accommodate your own book images. the rule of thumb is that the image here should be about */
-/* TODO half the size of the book images as they appear on your category page. */
 
 .cart-book-price {
   text-align: right;
@@ -119,8 +98,6 @@ img {
   justify-content: center;
   flex-wrap: wrap;
   height: max-content;
-  /*padding-left: 1em;*/
-  /*padding-right: 1em;*/
   padding: 0.25em;
   text-align: center;
 }
@@ -130,8 +107,6 @@ img {
   padding: 0.25em 1em;
 }
 
-/* Row separators in the table */
-
 .line-sep {
   display: block;
   height: 2px;
@@ -139,18 +114,10 @@ img {
   grid-column: 1 / -1;
 }
 
-/* Increment/decrement buttons */
-
-/* TODO Consider using icon buttons for your increment and decrement buttons. */
-/* TODO Modify the CSS here to suit your own design. */
-/* TODO In particular, you may or may not have custom properties */
-/* TODO primary-color and primary-color-dark defined in your global CSS file. */
-
 .fa-plus-circle {
   font-size: 1.5em;
   color: var(--primary-color-dark);
   border-color: var(--primary-color-dark);
-  /*background-color: var(--primary-color);*/
   border: none;
   padding: 0;
   margin: 0;
@@ -172,7 +139,6 @@ img {
 .fa-minus-circle {
   font-size: 1.5em;
   color: var(--primary-color-dark);
-  /*background-color: var(--primary-color);*/
   border: none;
   padding: 0;
   margin: 0;
@@ -226,7 +192,6 @@ select {
 .clear-cart {
   font-size: 0.8em;
   padding: 0.25em;
-  /*border-color: var(--primary-color-dark);*/
   border: 0.1em solid var(--primary-color-dark);
   background-color: inherit;
   color: var(--primary-color-dark);
@@ -258,11 +223,8 @@ select {
 .checkout {
   font-family: var(--title-font-family);
   font-weight: bold;
-  /*font-size: 1.25em;*/
-  /*padding: 0.5em;*/
   border-radius: 10px;
   box-shadow: 2px 2px 2px;
-  /*cursor: pointer;*/
 }
 </style>
 

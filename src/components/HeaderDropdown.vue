@@ -10,13 +10,10 @@ const showDropDown = ref(false);
 <style scoped>
 .header-dropdown {
   position: relative;
-  /*display: block;*/
-  /*cursor: pointer;*/
 }
 
 .header-dropdown li {
   padding: 0.25em 0.5em;
-  /*background-color: var(--nav-color);*/
   border: 1px solid white;
   box-shadow: #0008;
 }
@@ -28,7 +25,6 @@ const showDropDown = ref(false);
   border-radius: 10px;
   padding: 0.5em;
   margin: 0.125em;
-  /*transition: 0.3s background-color;*/
 }
 
 .header-dropdown:hover .categories-button {
@@ -72,14 +68,12 @@ const showDropDown = ref(false);
 }
 
 .header-dropdown:hover ul {
-  /*display: block;*/
   display: flex;
   flex-direction: column;
   flex: content-box;
   position: absolute;
   width: 100%;
   z-index: 1;
-  /*min-width: 8em;*/
   max-height: 500px;
   transition: max-height 0.55s ease-in;
   cursor: pointer;

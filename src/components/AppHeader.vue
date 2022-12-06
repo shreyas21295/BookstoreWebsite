@@ -8,13 +8,11 @@ header {
   background: var(--primary-background-color);
   display: flex;
   justify-content: space-between;
-  /*padding: 1em;*/
   flex-wrap: wrap;
   padding-top: 1em;
   padding-bottom: 0.5em;
   gap: 1em;
   border-bottom: 1px solid black;
-  /*font-size: 1.25rem;*/
 }
 
 .text-logo {
@@ -42,7 +40,6 @@ header {
 }
 
 .categories-section {
-  /* margin: 10px; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -97,7 +94,6 @@ header {
   border-style: solid;
   padding: 0.5em;
   margin: 0.125em;
-  /*font: icon;*/
 }
 
 .logo-img {

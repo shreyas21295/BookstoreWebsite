@@ -2,12 +2,9 @@
 import { useOrderDetailsStore } from "@/stores/OrderDetailsStore";
 import { useCartStore } from "@/stores/CartStore";
 import { asDollarsAndCents } from "@/utils";
-import { computed } from "vue";
 const orderDetailsStore = useOrderDetailsStore();
 const cartStore = useCartStore();
-const orderDetails = computed(() => {
-  return orderDetailsStore.orderDetails;
-});
+const orderDetails = orderDetailsStore.orderDetails;
 </script>
 
 <style scoped>
@@ -55,6 +52,11 @@ tr:nth-last-child(1) > td {
   border-block: solid var(--primary-color-dark);
 }
 
+tr:nth-last-child(3) > td {
+  background-color: var(--nav-color);
+  border-block: solid var(--primary-color-dark);
+}
+
 td:nth-child(1) {
   text-align: left;
 }
@@ -96,6 +98,16 @@ td:nth-child(3) {
         <td>
           {{
             asDollarsAndCents(orderDetails.books[index].price * item.quantity)
+          }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><strong>Subtotal</strong></td>
+        <td id="price">
+          {{
+            asDollarsAndCents(
+              orderDetails.order.amount - cartStore.cart.surcharge
+            )
           }}
         </td>
       </tr>
